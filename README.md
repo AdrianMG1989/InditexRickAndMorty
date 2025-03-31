@@ -55,7 +55,7 @@ InditexRickAndMorty/
 ```
 
 ## Notas Técnicas
-- La app sigue un enfoque asincrónico con async/await para hacer las llamadas a la API.
+- La app sigue un enfoque asíncrono con async/await para hacer las llamadas a la API.
 - Se usa MVVM como arquitectura.
 - Para cargar imágenes se ha optado por Kingfisher, que permite hacer cache y mejora el rendimiento.
 - Las peticiones a la API se construyen con URLComponents para evitar errores al generar las URLs.
@@ -68,11 +68,8 @@ InditexRickAndMorty/
 ## Posibles Mejoras
 🔹 Implementar tests de integración.  
 🔹 Mostrar más información en la vista del detalle del personaje.
+🔹 Mejoras visuales.
 
 ## Contacto
-Si tienes dudas o sugerencias, puedes contactarme en https://www.linkedin.com/in/adrianmolinier/.
-
----
-
-Espero que esta información sea útil para la prueba. ¡Gracias por revisar mi proyecto!
+https://www.linkedin.com/in/adrianmolinier/
 
