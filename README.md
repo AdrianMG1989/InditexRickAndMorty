@@ -17,7 +17,7 @@ InditexRickAndMortyApp es una aplicación iOS que permite buscar y visualizar pe
 ## Instalación y ejecución
 1. Clona este repositorio:
    ```sh
-   git clone https://github.com/AdrianMG1989/InditexRickAndMortyApp.git
+   git clone https://github.com/AdrianMG1989/InditexRickAndMorty.git
    ```
 2. Abre el proyecto en Xcode:
    ```sh
