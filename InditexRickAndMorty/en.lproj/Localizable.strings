@@ -1,0 +1,34 @@
+/* 
+  Localizable.strings
+  InditexRickAndMorty
+
+  Created by Adrian Molinier Gomez on 30/3/25.
+  
+*/
+
+//HomeView
+"homeview_searchbar_placeholder" = "Search character...";
+"homeview_characters_empty" = "No results are displayed";
+"homeview_characters_title" = "Characters";
+"homeview_unknow_error" = "Unknown error";
+"homeview_pickerstatus_title" = "Status";
+
+//StatusFilterView
+"homeview_pickerstatus_All" = "All";
+"homeview_pickerstatus_Alive" = "Alive";
+"homeview_pickerstatus_Dead" = "Dead";
+"homeview_pickerstatus_unknown" = "unknown";
+
+//CharacterDetailView
+"characterdetailview_status_text" = "Status: %@";
+"characterdetailview_species_text" = "Species: %@";
+"characterdetailview_gender_text" = "Gender: %@";
+"characterdetailview_location_text" = "Location: %@";
+"characterdetailview_originlocation_text" = "Origin location: %@";
+
+//SearchBarView
+"searchbarview_accessibility_delete_button_label" = "Clear text";
+"searchbarview_accessibility_delete_button_hint" = "Tap to clear the current search";
+
+//CharacterCardView
+"charactercardview_accessibility_hint" = "Double tap to view details of this character.";

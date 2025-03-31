@@ -1,0 +1,34 @@
+/* 
+  Localizable.strings
+  InditexRickAndMorty
+
+  Created by Adrian Molinier Gomez on 30/3/25.
+  
+*/
+
+//HomeView
+"homeview_searchbar_placeholder" = "Buscar personaje...";
+"homeview_characters_empty" = "No se muestran resultados";
+"homeview_characters_title" = "Personajes";
+"homeview_unknow_error" = "Error desconocido";
+"homeview_pickerstatus_title" = "Estado";
+
+//StatusFilterView
+"homeview_pickerstatus_All" = "Todos";
+"homeview_pickerstatus_Alive" = "Vivos";
+"homeview_pickerstatus_Dead" = "Muertos";
+"homeview_pickerstatus_unknown" = "Desconocido";
+
+//CharacterDetailView
+"characterdetailview_status_text" = "Estado: %@";
+"characterdetailview_species_text" = "Especie: %@";
+"characterdetailview_gender_text" = "Género: %@";
+"characterdetailview_location_text" = "Ubicación: %@";
+"characterdetailview_originlocation_text" = "Ubicación de origen: %@";
+
+//SearchBarView
+"searchbarview_accessibility_delete_button_label" = "Borrar texto";
+"searchbarview_accessibility_delete_button_hint" = "Pulsa para borrar la búsqueda actual";
+
+//CharacterCardView
+"charactercardview_accessibility_hint" = "Doble pulsación para ver los detalles de este personaje.";
