@@ -26,9 +26,5 @@
 "characterdetailview_location_text" = "Location: %@";
 "characterdetailview_originlocation_text" = "Origin location: %@";
 
-//SearchBarView
-"searchbarview_accessibility_delete_button_label" = "Clear text";
-"searchbarview_accessibility_delete_button_hint" = "Tap to clear the current search";
-
 //CharacterCardView
 "charactercardview_accessibility_hint" = "Double tap to view details of this character.";

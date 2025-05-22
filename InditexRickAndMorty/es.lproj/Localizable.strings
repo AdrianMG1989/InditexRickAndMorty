@@ -26,9 +26,5 @@
 "characterdetailview_location_text" = "Ubicación: %@";
 "characterdetailview_originlocation_text" = "Ubicación de origen: %@";
 
-//SearchBarView
-"searchbarview_accessibility_delete_button_label" = "Borrar texto";
-"searchbarview_accessibility_delete_button_hint" = "Pulsa para borrar la búsqueda actual";
-
 //CharacterCardView
 "charactercardview_accessibility_hint" = "Doble pulsación para ver los detalles de este personaje.";

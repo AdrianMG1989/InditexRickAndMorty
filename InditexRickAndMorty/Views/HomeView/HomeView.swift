@@ -6,8 +6,12 @@
 //
 
 import SwiftUI
+import RickAndMortySearchBar
 
 struct HomeView: View {
+    
+    @EnvironmentObject var router: DefaultRouter
+    
     @StateObject private var viewModel = HomeViewModel()
     @State private var searchText = ""
     @State private var selectedStatus: FilterStatus = .all
@@ -16,7 +20,6 @@ struct HomeView: View {
     private let minimumSearchLength = 3
     
     var body: some View {
-        NavigationView{
             ZStack {
                 ScrollView {
                     
@@ -29,16 +32,19 @@ struct HomeView: View {
                         .onChange(of: selectedStatus) {
                             fetchCharacters(isNewSearch:true)
                         }
-
+                    
                     LazyVStack(spacing: 20) {
                         ForEach(viewModel.characters, id: \.id) { character in
-                            NavigationLink(destination: CharacterDetailView(character: character)) {
+                            
+                            Button {
+                                router.navigate(to: .characterDetail(character))
+                            } label: {
                                 CharacterCardView(character: character)
-                                    .onAppear {
-                                        if character == viewModel.characters.last {
-                                            fetchCharacters(isNewSearch:false)
-                                        }
-                                    }
+                            }
+                            .onAppear {
+                                if character == viewModel.characters.last {
+                                    fetchCharacters(isNewSearch: false)
+                                }
                             }
                         }
                         if viewModel.isLoading {
@@ -63,7 +69,6 @@ struct HomeView: View {
             .onChange(of: viewModel.errorMessage){
                 showErrorAlert = viewModel.errorMessage != nil
             }
-        }
     }
     
     private func fetchCharacters(isNewSearch:Bool) {

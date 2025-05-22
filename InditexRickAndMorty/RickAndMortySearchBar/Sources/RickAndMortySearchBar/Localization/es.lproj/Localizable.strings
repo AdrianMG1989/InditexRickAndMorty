@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  RickAndMortySearchBar
+
+  Created by Adrian Molinier Gomez on 22/5/25.
+  
+*/
+
+//SearchBarView
+"searchbarview_accessibility_delete_button_label" = "Borrar texto";
+"searchbarview_accessibility_delete_button_hint" = "Pulsa para borrar la búsqueda actual";

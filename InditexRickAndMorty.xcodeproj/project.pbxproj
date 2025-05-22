@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		08AAAAB62D97126400BDCC46 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 08AAAAB52D97126400BDCC46 /* Kingfisher */; };
+		08D892842DDF8B0A0089EDF0 /* RickAndMortySearchBar in Frameworks */ = {isa = PBXBuildFile; productRef = 08D892832DDF8B0A0089EDF0 /* RickAndMortySearchBar */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,9 +34,22 @@
 		089C9E272D96A16900320FAC /* InditexRickAndMortyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InditexRickAndMortyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		08D892822DDF89690089EDF0 /* Exceptions for "InditexRickAndMorty" folder in "InditexRickAndMorty" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				RickAndMortySearchBar,
+			);
+			target = 089C9E0C2D96A16600320FAC /* InditexRickAndMorty */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		089C9E0F2D96A16600320FAC /* InditexRickAndMorty */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				08D892822DDF89690089EDF0 /* Exceptions for "InditexRickAndMorty" folder in "InditexRickAndMorty" target */,
+			);
 			path = InditexRickAndMorty;
 			sourceTree = "<group>";
 		};
@@ -57,6 +71,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				08AAAAB62D97126400BDCC46 /* Kingfisher in Frameworks */,
+				08D892842DDF8B0A0089EDF0 /* RickAndMortySearchBar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,6 +141,7 @@
 			name = InditexRickAndMorty;
 			packageProductDependencies = (
 				08AAAAB52D97126400BDCC46 /* Kingfisher */,
+				08D892832DDF8B0A0089EDF0 /* RickAndMortySearchBar */,
 			);
 			productName = InditexRickAndMorty;
 			productReference = 089C9E0D2D96A16600320FAC /* InditexRickAndMorty.app */;
@@ -589,6 +605,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 08AAAAB32D9711E100BDCC46 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		08D892832DDF8B0A0089EDF0 /* RickAndMortySearchBar */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = RickAndMortySearchBar;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

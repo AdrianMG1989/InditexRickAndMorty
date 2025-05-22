@@ -5,7 +5,7 @@
 //  Created by Adrian Molinier Gomez on 28/3/25.
 //
 
-struct Character: Decodable, Identifiable, Equatable{
+struct Character: Decodable, Identifiable, Equatable, Hashable{
     let id: Int
     let name: String
     let status: Status
@@ -33,7 +33,7 @@ enum Status: String, CaseIterable, Decodable{
     case unknown = "unknown"
 }
 
-struct Location: Decodable, Equatable {
+struct Location: Decodable, Equatable, Hashable {
     var name: String
 }
 

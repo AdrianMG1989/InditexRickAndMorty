@@ -1,18 +1,19 @@
-//
-//  SearchBarView.swift
-//  InditexRickAndMorty
-//
-//  Created by Adrian Molinier Gomez on 30/3/25.
-//
+// The Swift Programming Language
+// https://docs.swift.org/swift-book
 
 import SwiftUI
 
-struct SearchBarView: View {
+public struct SearchBarView: View {
     @Binding var searchText: String
     
     var placeholderText: String
     
-    var body: some View {
+    public init(searchText: Binding<String>, placeholderText: String) {
+        self._searchText = searchText
+        self.placeholderText = placeholderText
+    }
+    
+    public var body: some View {
 
         HStack {
             Image(systemName: "magnifyingglass")
@@ -34,8 +35,8 @@ struct SearchBarView: View {
                         .foregroundColor(.primary)
                         .accessibilityHidden(true)
                 }
-                .accessibilityLabel(NSLocalizedString("searchbarview_accessibility_delete_button_label", comment: "accesibility label"))
-                .accessibilityHint(NSLocalizedString("searchbarview_accessibility_delete_button_hint", comment: "accesibility hint"))
+                .accessibilityLabel(NSLocalizedString("searchbarview_accessibility_delete_button_label", bundle: .module, comment: "accesibility label"))
+                .accessibilityHint(NSLocalizedString("searchbarview_accessibility_delete_button_hint", bundle: .module, comment: "accesibility hint"))
             }
         }
         .padding()
