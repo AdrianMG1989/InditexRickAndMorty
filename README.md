@@ -46,11 +46,12 @@ Las dependencias se gestionan con Swift Package Manager (SPM). Se usa:
 ```
 InditexRickAndMorty/
 ├── Entities/       # Modelos de datos y estructuras
+├── Router/         # Lógica de navegación
 ├── Services/       # Servicios y APIs
 ├── UseCases/       # Lógica de negocio
 ├── Utilities/      # Extensiones y utilidades
-├── Views/          # Vistas y componentes de UI
 ├── ViewModels/     # Lógica de negocio y estados
+├── Views/          # Vistas y componentes de UI
 └── Assets.xcassets # Recursos gráficos y assets
 ```
 
@@ -59,15 +60,20 @@ InditexRickAndMorty/
 - Se usa MVVM como arquitectura.
 - Para cargar imágenes se ha optado por Kingfisher, que permite hacer cache y mejora el rendimiento.
 - Las peticiones a la API se construyen con URLComponents para evitar errores al generar las URLs.
-- Las dependencias se han gestionado con Swift Package Manager (SPM).
+- Las dependencias se han gestionado con Swift Package Manager (SPM). 
+- Se ha creado un módulo local llamado RickAndMortySearchBar para encapsular y reutilizar la vista de búsqueda de forma desacoplada.
 - La lista de personajes usa LazyVStack para cargar solo los elementos necesarios y mejorar el rendimiento.
 - Se ha implementado paginación para mejorar la carga eficiente de datos.
 - Se usa defer en la función de carga de datos para asegurarse de que isLoading se actualiza correctamente.
 - Los errores de la API están controlados con el enum CharacterServiceError.
+- La app está preparada para múltiples idiomas, actualmente soportando inglés (EN) y español (ES), incluyendo accesibilidad.
+- Se han añadido etiquetas y ayudas de accesibilidad (accessibilityLabel, accessibilityHint) en elementos interactivos como la barra de búsqueda, para mejorar la experiencia de usuarios con tecnologías asistidas.
+- La UI se ha fragmentado en pequeñas vistas reutilizables (como CharacterCardView y SearchBarView) para facilitar la reutilización, testeo y mantenibilidad.
+- Las vistas usan componentes de SwiftUI que se adaptan automáticamente al modo claro/oscuro y a distintos tamaños de pantalla.
 
 ## Posibles Mejoras
-🔹 Implementar tests de integración.  
-🔹 Mostrar más información en la vista del detalle del personaje.
+🔹 Implementar tests de integración y Snapshot Testing. 
+🔹 Mostrar más información en la vista del detalle del personaje.  
 🔹 Mejoras visuales.
 
 ## Contacto
