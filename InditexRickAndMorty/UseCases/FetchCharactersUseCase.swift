@@ -12,9 +12,10 @@ protocol FetchCharactersUseCaseProtocol{
 }
 
 struct FetchCharactersUseCase: FetchCharactersUseCaseProtocol{
-    var characterService: CharacterServiceProtocol
     
-    init(characterService: CharacterServiceProtocol = CharacterService.shared){
+    private let characterService: CharacterServiceProtocol
+
+    init(characterService: CharacterServiceProtocol) {
         self.characterService = characterService
     }
     

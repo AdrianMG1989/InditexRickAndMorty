@@ -34,7 +34,7 @@ enum Status: String, CaseIterable, Decodable{
 }
 
 struct Location: Decodable, Equatable, Hashable {
-    var name: String
+    let name: String
 }
 
 struct CharacterInfo: Decodable {

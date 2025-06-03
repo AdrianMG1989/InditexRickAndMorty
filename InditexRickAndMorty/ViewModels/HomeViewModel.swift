@@ -13,19 +13,19 @@ class HomeViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var errorMessage: String?
     
-    var fetchCharactersUseCase: FetchCharactersUseCaseProtocol
+    let fetchCharactersUseCase: FetchCharactersUseCaseProtocol
     
-    var currentPage = 1
-    var totalPages = 1
+    private var currentPage = 1
+    private var totalPages = 1
     
-   init(fetchCharactersUseCase: FetchCharactersUseCaseProtocol = FetchCharactersUseCase()) {
-       self.fetchCharactersUseCase = fetchCharactersUseCase
+    init(fetchCharactersUseCase: FetchCharactersUseCaseProtocol) {
+        self.fetchCharactersUseCase = fetchCharactersUseCase
         Task {
             await fetchFilteredCharacters(isNewSearch: true)
         }
     }
     
-    func resetSearch(){
+    private func resetSearch(){
         currentPage = 1
         totalPages = 1
         characters.removeAll()
@@ -52,9 +52,9 @@ class HomeViewModel: ObservableObject {
             let fetchedCharacters = try await fetchCharactersUseCase.fetchCharactersWith(page: currentPage, name: name, status: status)
             characters += fetchedCharacters.results
             totalPages = fetchedCharacters.info.pages
-        } catch CharacterServiceError.noCharactersFound {
-            resetSearch()
-            return
+//        } catch CharacterServiceError.noCharactersFound {
+//            resetSearch()
+//            return
         } catch {
             resetSearch()
             errorMessage = "Error loading characters: \(error.localizedDescription)"

@@ -11,11 +11,13 @@ import SwiftUI
 struct InditexRickAndMortyApp: App {
     
     @StateObject private var router = DefaultRouter()
+    let factory = UseCaseFactory()
     
     var body: some Scene {
         WindowGroup {
             NavigationStack(path: $router.path) {
-                HomeView()
+                let viewModel = HomeViewModel(fetchCharactersUseCase: factory.makeFetchCharactersUseCase())
+                HomeView(viewModel: viewModel)
                     .environmentObject(router)
                     .navigationDestination(for: Route.self) { route in
                         switch route {

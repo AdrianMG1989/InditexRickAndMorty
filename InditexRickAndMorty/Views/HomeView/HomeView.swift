@@ -12,7 +12,7 @@ struct HomeView: View {
     
     @EnvironmentObject var router: DefaultRouter
     
-    @StateObject private var viewModel = HomeViewModel()
+    @StateObject var viewModel: HomeViewModel
     @State private var searchText = ""
     @State private var selectedStatus: FilterStatus = .all
     @State private var showErrorAlert = false
@@ -86,11 +86,7 @@ struct HomeView: View {
     }
 }
 
-#Preview {
-    HomeView()
-}
-
-struct StatusFilterView: View {
+private struct StatusFilterView: View {
     @Binding var selectedStatus: FilterStatus
 
     var body: some View {

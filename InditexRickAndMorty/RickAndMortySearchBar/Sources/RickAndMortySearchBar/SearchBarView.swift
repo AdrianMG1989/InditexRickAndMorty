@@ -6,7 +6,7 @@ import SwiftUI
 public struct SearchBarView: View {
     @Binding var searchText: String
     
-    var placeholderText: String
+    let placeholderText: String
     
     public init(searchText: Binding<String>, placeholderText: String) {
         self._searchText = searchText

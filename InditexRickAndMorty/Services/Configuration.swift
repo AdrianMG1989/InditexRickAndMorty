@@ -11,7 +11,7 @@ protocol ConfigurationProtocol {
     var urlBase: String { get }
 }
 
-class Configuration: ConfigurationProtocol {
+final class Configuration: ConfigurationProtocol {
     
     let urlBase: String = "https://rickandmortyapi.com/api/"
     
