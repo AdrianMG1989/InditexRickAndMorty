@@ -12,6 +12,7 @@ enum NavigationRoute: Hashable {
     case characterDetail(Character)
 }
 
+@MainActor
 final class Coordinator: ObservableObject {
     @Published var path = NavigationPath()
     
@@ -33,10 +34,11 @@ final class Coordinator: ObservableObject {
     }
 
     func pop() {
-        path.removeLast()
+        if !path.isEmpty {
+            path.removeLast()
+        }
     }
-
-    @MainActor
+    
     @ViewBuilder
     func build(route: NavigationRoute) -> some View {
         switch route {
