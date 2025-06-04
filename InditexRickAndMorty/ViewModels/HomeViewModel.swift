@@ -15,6 +15,12 @@ class HomeViewModel: ObservableObject {
     
     let fetchCharactersUseCase: FetchCharactersUseCaseProtocol
     
+    var onCharacterSelected: ((Character) -> Void)?
+
+    func characterTapped(_ character: Character) {
+        onCharacterSelected?(character)
+    }
+    
     private var currentPage = 1
     private var totalPages = 1
     

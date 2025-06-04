@@ -10,8 +10,6 @@ import RickAndMortySearchBar
 
 struct HomeView: View {
     
-    @EnvironmentObject var router: DefaultRouter
-    
     @StateObject var viewModel: HomeViewModel
     @State private var searchText = ""
     @State private var selectedStatus: FilterStatus = .all
@@ -37,7 +35,7 @@ struct HomeView: View {
                         ForEach(viewModel.characters, id: \.id) { character in
                             
                             Button {
-                                router.navigate(to: .characterDetail(character))
+                                viewModel.characterTapped(character)
                             } label: {
                                 CharacterCardView(character: character)
                             }
