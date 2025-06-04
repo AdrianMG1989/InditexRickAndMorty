@@ -8,6 +8,8 @@
 struct CharacterResponse {
     let info: CharacterInfo
     let results: [Character]
+    
+    static let empty = CharacterResponse(info: CharacterInfo(pages: 0), results: [])
 }
 
 struct CharacterInfo {

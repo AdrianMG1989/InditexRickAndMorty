@@ -83,17 +83,18 @@ class HomeViewModel: ObservableObject {
         }
         
         do {
-            let result = try await fetchCharactersUseCase.fetchCharactersWith(
+            let fetchedCharacters = try await fetchCharactersUseCase.fetchCharactersWith(
                 page: currentPage,
                 name: searchText.isEmpty ? nil : searchText,
                 status: selectedStatus.apiValue
             )
-            characters += result.results
-            totalPages = result.info.pages
+            
+            guard !fetchedCharacters.results.isEmpty else { return }
+            
+            characters += fetchedCharacters.results
+            totalPages = fetchedCharacters.info.pages
             currentPage += 1
-            //        } catch CharacterServiceError.noCharactersFound {
-            //            resetSearch()
-            //            return
+            
         } catch {
             if isNewSearch { characters.removeAll() }
             errorMessage = "Error loading characters: \(error.localizedDescription)"

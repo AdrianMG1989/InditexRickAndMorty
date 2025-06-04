@@ -51,9 +51,12 @@ final class CharacterService: CharacterServiceProtocol {
         
         let urlRequest = try buildCharactersURLRequest(page: page, name: name, status: status)
         
-        let responseDTO = try await performRequest(with: urlRequest, decodeTo: CharacterResponseDTO.self)
-        
-        return responseDTO.toDomain()
+        do {
+            let responseDTO = try await performRequest(with: urlRequest, decodeTo: CharacterResponseDTO.self)
+            return responseDTO.toDomain()
+        } catch APIError.notFound {
+            return CharacterResponse.empty
+        }
     }
     
 }

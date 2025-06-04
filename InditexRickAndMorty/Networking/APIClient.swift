@@ -12,6 +12,7 @@ enum APIError: Error {
     case statusCode(Int)
     case decodingError(Error)
     case networkError(Error)
+    case notFound
 }
 
 func performRequest<T: Decodable>(
@@ -26,7 +27,11 @@ func performRequest<T: Decodable>(
         }
         
         guard (200...299).contains(httpResponse.statusCode) else {
-            throw APIError.statusCode(httpResponse.statusCode)
+            if httpResponse.statusCode == 404 {
+                throw APIError.notFound
+            } else {
+                throw APIError.statusCode(httpResponse.statusCode)
+            }
         }
         
         do {
@@ -36,6 +41,8 @@ func performRequest<T: Decodable>(
             throw APIError.decodingError(error)
         }
         
+    } catch let error as APIError {
+        throw error
     } catch {
         throw APIError.networkError(error)
     }
