@@ -42,9 +42,9 @@ class HomeViewModel: ObservableObject {
         debounceTask = Task {
             try? await Task.sleep(nanoseconds: 300_000_000)
             if Task.isCancelled { return }
-            if searchText.isEmpty || searchText.count >= minimumSearchLength {
-                await fetchCharacters(isNewSearch: true)
-            }
+            guard searchText.isEmpty || searchText.count >= minimumSearchLength else { return }
+            guard !isFetchingPage else { return }
+            await fetchCharacters(isNewSearch: true)
         }
     }
     
@@ -66,39 +66,59 @@ class HomeViewModel: ObservableObject {
     
     private func fetchCharacters(isNewSearch: Bool) async {
         
-        guard !isFetchingPage else { return }
-        guard currentPage <= totalPages else { return }
+        guard shouldFetchCharacters(isNewSearch: isNewSearch) else { return }
+
+        prepareForFetching()
+
+        defer { finalizeFetching() }
         
+        do {
+            let fetchedCharacters = try await fetchPage()
+            handleFetchedCharacters(fetchedCharacters, isNewSearch: isNewSearch)
+        } catch {
+            handleFetchError(error, isNewSearch: isNewSearch)
+        }
+    }
+    
+    private func shouldFetchCharacters(isNewSearch: Bool) -> Bool {
+        guard !isFetchingPage else { return false }
         if isNewSearch {
             resetSearch()
         }
-        
+        return currentPage <= totalPages
+    }
+
+    private func prepareForFetching() {
         isLoading = true
         isFetchingPage = true
         errorMessage = nil
-        
-        defer {
-            isLoading = false
-            isFetchingPage = false
+    }
+    
+    private func fetchPage() async throws -> CharacterResponse {
+        return try await fetchCharactersUseCase.fetchCharactersWith(
+            page: currentPage,
+            name: searchText.isEmpty ? nil : searchText,
+            status: selectedStatus.apiValue
+        )
+    }
+    
+    private func handleFetchedCharacters(_ response: CharacterResponse, isNewSearch: Bool) {
+        guard !response.results.isEmpty else { return }
+        characters += response.results
+        totalPages = response.info.pages
+        currentPage += 1
+    }
+
+    private func handleFetchError(_ error: Error, isNewSearch: Bool) {
+        if isNewSearch {
+            characters.removeAll()
         }
-        
-        do {
-            let fetchedCharacters = try await fetchCharactersUseCase.fetchCharactersWith(
-                page: currentPage,
-                name: searchText.isEmpty ? nil : searchText,
-                status: selectedStatus.apiValue
-            )
-            
-            guard !fetchedCharacters.results.isEmpty else { return }
-            
-            characters += fetchedCharacters.results
-            totalPages = fetchedCharacters.info.pages
-            currentPage += 1
-            
-        } catch {
-            if isNewSearch { characters.removeAll() }
-            errorMessage = "Error loading characters: \(error.localizedDescription)"
-        }
+        errorMessage = "Error loading characters: \(error.localizedDescription)"
+    }
+    
+    private func finalizeFetching() {
+        isLoading = false
+        isFetchingPage = false
     }
     
     func dismissError() {
