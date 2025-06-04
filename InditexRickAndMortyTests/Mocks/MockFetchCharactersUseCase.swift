@@ -16,10 +16,10 @@ class MockFetchCharactersUseCase: FetchCharactersUseCaseProtocol {
     }
 }
 
-class MockFetchCharactersUseCaseWithError: FetchCharactersUseCaseProtocol {
-    
-    func fetchCharactersWith(page: Int, name: String?, status: String?) async throws -> CharacterResponse {
- 
-        throw CharacterServiceError.noCharactersFound
-    }
-}
+//class MockFetchCharactersUseCaseWithError: FetchCharactersUseCaseProtocol {
+//    
+//    func fetchCharactersWith(page: Int, name: String?, status: String?) async throws -> CharacterResponse {
+// 
+//        throw CharacterServiceError.noCharactersFound
+//    }
+//}

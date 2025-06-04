@@ -5,12 +5,13 @@
 //  Created by Adrian Molinier Gomez on 3/6/25.
 //
 
-struct CharacterResponse: Decodable {
-    let info: CharacterInfo
+
+struct CharacterResponseDTO: Decodable {
+    let info: InfoDTO
     let results: [CharacterDTO]
 }
 
-struct CharacterInfo: Decodable {
+struct InfoDTO: Decodable {
     let pages: Int
 }
 
@@ -19,10 +20,10 @@ struct CharacterDTO: Decodable {
     let name: String
     let status: String
     let species: String
-    let origin: LocationDTO
     let gender: String
+    let origin: LocationDTO
     let location: LocationDTO
-    let imageUrl: String
+    let image: String
 }
 
 struct LocationDTO: Decodable {

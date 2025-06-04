@@ -52,5 +52,5 @@ struct CharacterCardView: View {
 }
 
 #Preview {
-    CharacterCardView(character: Character(id:  1, name: "Rick Sanchez", status: .alive, species: "Human", origin: Location(name: "Earth (C-137"), gender: "Male", location: Location(name: "Citadel of Ricks"), imageUrl: "https://rickandmortyapi.com/api/character/avatar/1.jpeg"))
+    CharacterCardView(character: Character(id:  1, name: "Rick Sanchez", status: .alive, species: "Human", gender: "Male", origin: Location(name: "Earth (C-137"), location: Location(name: "Citadel of Ricks"), imageUrl: "https://rickandmortyapi.com/api/character/avatar/1.jpeg"))
 }

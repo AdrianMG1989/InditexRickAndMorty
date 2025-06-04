@@ -51,7 +51,9 @@ final class CharacterService: CharacterServiceProtocol {
         
         let urlRequest = try buildCharactersURLRequest(page: page, name: name, status: status)
         
-        return try await performRequest(with: urlRequest, decodeTo: CharacterResponse.self)
+        let responseDTO = try await performRequest(with: urlRequest, decodeTo: CharacterResponseDTO.self)
+        
+        return responseDTO.toDomain()
     }
     
 }
