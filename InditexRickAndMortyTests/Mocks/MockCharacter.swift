@@ -13,8 +13,7 @@ let mockCharacter1 = Character(
     name: "Rick Sanchez",
     status: .alive,
     species: "Human",
-    origin: Location(name: "Earth"),
-    gender: "Male",
+    gender: "Male", origin: Location(name: "Earth"),
     location: Location(name: "Citadel of Ricks"),
     imageUrl: "https://rickandmortyapi.com/api/character/avatar/1.jpeg"
 )
@@ -24,8 +23,7 @@ let mockCharacter2 = Character(
     name: "Morty Smith",
     status: .alive,
     species: "Human",
-    origin: Location(name: "unknown"),
-    gender: "Male",
+    gender: "Male", origin: Location(name: "unknown"),
     location: Location(name: "Citadel of Ricks"),
     imageUrl: "https://rickandmortyapi.com/api/character/avatar/2.jpeg"
 )
@@ -35,8 +33,7 @@ let mockCharacter3 = Character(
     name: "Summer Smith",
     status: .alive,
     species: "Human",
-    origin: Location(name: "Earth (Replacement Dimension)"),
-    gender: "Female",
+    gender: "Female", origin: Location(name: "Earth (Replacement Dimension)"),
     location: Location(name: "Earth (Replacement Dimension)"),
     imageUrl: "https://rickandmortyapi.com/api/character/avatar/3.jpeg"
 )
