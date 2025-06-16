@@ -17,14 +17,8 @@ struct HomeView: View {
         ScrollView {
             
             SearchBarView(searchText: $viewModel.searchText, placeholderText: NSLocalizedString("homeview_searchbar_placeholder", comment: "placeholder text"))
-                .onChange(of: viewModel.searchText) {
-                     viewModel.updateSearchText(viewModel.searchText)
-                 }
             
             StatusFilterView(selectedStatus: $viewModel.selectedStatus)
-                .onChange(of: viewModel.selectedStatus) {
-                    viewModel.updateFilter(viewModel.selectedStatus)
-                }
             
             CharacterListView(
                 characters: viewModel.characters,
@@ -39,9 +33,6 @@ struct HomeView: View {
             Button("Ok", role: .cancel) { viewModel.dismissError() }
         } message: {
             Text(viewModel.errorMessage ?? NSLocalizedString("homeview_unknow_error", comment: "Unknown error message"))
-        }
-        .onChange(of: viewModel.errorMessage) {
-            viewModel.showErrorAlert = viewModel.errorMessage != nil
         }
     }
 }

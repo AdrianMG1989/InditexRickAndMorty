@@ -11,10 +11,22 @@ import Foundation
 class HomeViewModel: ObservableObject {
     @Published var characters: [Character] = []
     @Published var isLoading = false
-    @Published var searchText: String = ""
-    @Published var selectedStatus: FilterStatus = .all
-    @Published var errorMessage: String?
     @Published var showErrorAlert = false
+    @Published var searchText: String = "" {
+        didSet {
+            updateSearchText()
+        }
+    }
+    @Published var selectedStatus: FilterStatus = .all{
+        didSet {
+            updateFilter()
+        }
+    }
+    @Published var errorMessage: String? {
+        didSet {
+            showErrorAlert = errorMessage != nil
+        }
+    }
     
     private var isFetchingPage = false
     private let fetchCharactersUseCase: FetchCharactersUseCaseProtocol
@@ -22,25 +34,29 @@ class HomeViewModel: ObservableObject {
     private var totalPages = 1
     private let minimumSearchLength = 3
     private var debounceTask: Task<Void, Never>?
+    private let debounceDelay: UInt64 = 300_000_000 // 300ms
     
     var onCharacterSelected: ((Character) -> Void)?
     
     init(fetchCharactersUseCase: FetchCharactersUseCaseProtocol) {
         self.fetchCharactersUseCase = fetchCharactersUseCase
+        loadInitialData()
+    }
+
+    private func loadInitialData(){
         Task {
             await fetchCharacters(isNewSearch: true)
         }
     }
-
+    
     func characterTapped(_ character: Character) {
         onCharacterSelected?(character)
     }
     
-    func updateSearchText(_ newText: String) {
-        searchText = newText
+    func updateSearchText() {
         debounceTask?.cancel()
         debounceTask = Task {
-            try? await Task.sleep(nanoseconds: 300_000_000)
+            try? await Task.sleep(nanoseconds: debounceDelay)
             if Task.isCancelled { return }
             guard searchText.isEmpty || searchText.count >= minimumSearchLength else { return }
             guard !isFetchingPage else { return }
@@ -48,8 +64,7 @@ class HomeViewModel: ObservableObject {
         }
     }
     
-    func updateFilter(_ newStatus: FilterStatus) {
-        selectedStatus = newStatus
+    func updateFilter() {
         Task { await fetchCharacters(isNewSearch: true) }
     }
     
