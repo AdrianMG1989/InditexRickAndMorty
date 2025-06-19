@@ -9,9 +9,9 @@ import XCTest
 @testable import InditexRickAndMorty
 
 class CharacterTests: XCTestCase {
-
+    
     // MARK: - Test Initialization of Character
-
+    
     func testCharacterInitialization() {
         
         let character = mockCharacter1
@@ -35,16 +35,16 @@ class CharacterTests: XCTestCase {
         
         XCTAssertTrue(character1 == character2)
     }
-
+    
     func testCharacterInequality() {
         let character1 = mockCharacter1
         let character2 = mockCharacter2
         
         XCTAssertFalse(character1 == character2)
     }
-
+    
     // MARK: - Test Location Equatable
-
+    
     func testLocationEquality() {
         let location1 = mockLocation1
         let location2 = mockLocation1
@@ -52,5 +52,19 @@ class CharacterTests: XCTestCase {
         
         XCTAssertTrue(location1 == location2)
         XCTAssertFalse(location1 == location3)
+    }
+    
+    // MARK: - Test Status Equatable
+    
+    func testStatusAllCases() {
+        let expected: [Status] = mockStatus
+        XCTAssertEqual(Status.allCases, expected)
+    }
+    
+    func testStatusRawValueInit() {
+        XCTAssertEqual(Status(rawValue: "Alive"), .alive)
+        XCTAssertEqual(Status(rawValue: "Dead"), .dead)
+        XCTAssertEqual(Status(rawValue: "unknown"), .unknown)
+        XCTAssertNil(Status(rawValue: "other"))
     }
 }

@@ -58,11 +58,6 @@
 			path = InditexRickAndMortyTests;
 			sourceTree = "<group>";
 		};
-		089C9E2A2D96A16900320FAC /* InditexRickAndMortyUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = InditexRickAndMortyUITests;
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,7 +92,6 @@
 			children = (
 				089C9E0F2D96A16600320FAC /* InditexRickAndMorty */,
 				089C9E202D96A16900320FAC /* InditexRickAndMortyTests */,
-				089C9E2A2D96A16900320FAC /* InditexRickAndMortyUITests */,
 				08AAAAB42D97126400BDCC46 /* Frameworks */,
 				089C9E0E2D96A16600320FAC /* Products */,
 			);
@@ -182,9 +176,6 @@
 			);
 			dependencies = (
 				089C9E292D96A16900320FAC /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				089C9E2A2D96A16900320FAC /* InditexRickAndMortyUITests */,
 			);
 			name = InditexRickAndMortyUITests;
 			packageProductDependencies = (

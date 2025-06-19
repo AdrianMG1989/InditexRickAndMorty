@@ -19,9 +19,5 @@ let package = Package(
         .target(
             name: "RickAndMortySearchBar",
             dependencies: []),
-        .testTarget(
-            name: "RickAndMortySearchBarTests",
-            dependencies: ["RickAndMortySearchBar"]
-        ),
     ]
 )

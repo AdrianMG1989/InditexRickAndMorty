@@ -5,7 +5,6 @@
 //  Created by Adrian Molinier Gomez on 30/3/25.
 //
 
-import XCTest
 @testable import InditexRickAndMorty
 
 let mockCharacter1 = Character(
@@ -31,22 +30,16 @@ let mockCharacter2 = Character(
 let mockCharacter3 = Character(
     id: 3,
     name: "Summer Smith",
-    status: .alive,
+    status: .dead,
     species: "Human",
     gender: "Female", origin: Location(name: "Earth (Replacement Dimension)"),
     location: Location(name: "Earth (Replacement Dimension)"),
     imageUrl: "https://rickandmortyapi.com/api/character/avatar/3.jpeg"
 )
 
-let mockStatus: [Status] = [.alive, .dead, .unknown]
 
 let mockLocation1 = Location(name: "Citadel of Ricks")
 
 let mockLocation2 = Location(name: "Earth (Replacement Dimension)")
 
-let mockCharacterInfo = CharacterInfo(pages: 5)
-
-let mockCharacterResponse = CharacterResponse(
-    info: mockCharacterInfo,
-    results: [mockCharacter1, mockCharacter2, mockCharacter3]
-)
+let mockStatus: [Status] = [.alive, .dead, .unknown]

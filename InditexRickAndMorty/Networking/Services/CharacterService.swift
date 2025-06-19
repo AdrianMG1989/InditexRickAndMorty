@@ -18,7 +18,7 @@ final class CharacterService: CharacterServiceProtocol {
         self.configuration = configuration
     }
     
-    private func buildCharactersURLRequest(page: Int, name: String? = nil, status: String? = nil) throws -> URLRequest {
+    func buildCharactersURLRequest(page: Int, name: String? = nil, status: String? = nil) throws -> URLRequest {
         
         let characterURL = configuration.urlBase + "character"
         var urlComponents = URLComponents(string: characterURL)

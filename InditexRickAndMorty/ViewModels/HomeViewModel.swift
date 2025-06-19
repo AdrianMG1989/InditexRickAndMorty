@@ -28,12 +28,12 @@ class HomeViewModel: ObservableObject {
         }
     }
     
-    private var isFetchingPage = false
+    var isFetchingPage = false
     private let fetchCharactersUseCase: FetchCharactersUseCaseProtocol
     private var currentPage = 1
     private var totalPages = 1
     private let minimumSearchLength = 3
-    private var debounceTask: Task<Void, Never>?
+    var debounceTask: Task<Void, Never>?
     private let debounceDelay: UInt64 = 300_000_000 // 300ms
     
     var onCharacterSelected: ((Character) -> Void)?
@@ -79,7 +79,7 @@ class HomeViewModel: ObservableObject {
         characters.removeAll()
     }
     
-    private func fetchCharacters(isNewSearch: Bool) async {
+    func fetchCharacters(isNewSearch: Bool) async {
         
         guard shouldFetchCharacters(isNewSearch: isNewSearch) else { return }
 
