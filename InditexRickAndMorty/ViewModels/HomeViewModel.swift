@@ -28,11 +28,11 @@ class HomeViewModel: ObservableObject {
         }
     }
     
-    var isFetchingPage = false
     private let fetchCharactersUseCase: FetchCharactersUseCaseProtocol
     private var currentPage = 1
     private var totalPages = 1
     private let minimumSearchLength = 3
+    var isFetchingPage = false
     var debounceTask: Task<Void, Never>?
     private let debounceDelay: UInt64 = 300_000_000 // 300ms
     

@@ -5,10 +5,14 @@
 //  Created by Adrian Molinier Gomez on 4/6/25.
 //
 
-struct ViewModelFactory {
-    private let useCaseFactory: UseCaseFactory
+protocol ViewModelFactoryProtocol {
+    @MainActor func makeHomeViewModel(onCharacterSelected: @escaping (Character) -> Void) -> HomeViewModel
+}
+
+struct ViewModelFactory: ViewModelFactoryProtocol {
+    private let useCaseFactory: UseCaseFactoryProtocol
     
-    init(useCaseFactory: UseCaseFactory) {
+    init(useCaseFactory: UseCaseFactoryProtocol) {
         self.useCaseFactory = useCaseFactory
     }
 

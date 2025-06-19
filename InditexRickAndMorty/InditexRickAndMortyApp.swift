@@ -12,8 +12,8 @@ struct InditexRickAndMortyApp: App {
     
     var body: some Scene {
         WindowGroup {
-            let useCaseFactory = UseCaseFactory()
-            let viewModelFactory = ViewModelFactory(useCaseFactory: useCaseFactory)
+            let useCaseFactory: UseCaseFactoryProtocol = UseCaseFactory()
+            let viewModelFactory: ViewModelFactoryProtocol = ViewModelFactory(useCaseFactory: useCaseFactory)
             let coordinator = Coordinator(viewModelFactory: viewModelFactory)
 
             NavigationHostView(coordinator: coordinator)

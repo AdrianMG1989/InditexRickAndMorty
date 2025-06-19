@@ -7,7 +7,11 @@
 
 import Foundation
 
-struct UseCaseFactory {
+protocol UseCaseFactoryProtocol {
+    func makeFetchCharactersUseCase() -> FetchCharactersUseCaseProtocol
+}
+
+struct UseCaseFactory: UseCaseFactoryProtocol {
     private let configuration: ConfigurationProtocol
 
     init(configuration: ConfigurationProtocol = Configuration()) {
