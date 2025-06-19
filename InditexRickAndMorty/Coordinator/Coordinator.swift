@@ -13,7 +13,18 @@ enum NavigationRoute: Hashable {
 }
 
 @MainActor
-final class Coordinator: ObservableObject {
+protocol CoordinatorProtocol: ObservableObject {
+    var pathBinding: Binding<NavigationPath> { get }
+    func navigate(to route: NavigationRoute)
+    func pop()
+    func popToRoot()
+    func build(route: NavigationRoute) -> AnyView
+    func clearCache()
+    func clearCache<T>(for type: T.Type)
+}
+
+@MainActor
+final class Coordinator: CoordinatorProtocol {
     @Published var path = NavigationPath()
     
     private let viewModelFactory: ViewModelFactoryProtocol
@@ -62,8 +73,8 @@ final class Coordinator: ObservableObject {
         viewModelCache.removeValue(forKey: key)
     }
     
-    @ViewBuilder
-    func build(route: NavigationRoute) -> some View {
+
+    func build(route: NavigationRoute) -> AnyView {
         switch route {
         case .home:
             let viewModel: HomeViewModel = getCachedViewModel(for: HomeViewModel.self) {
@@ -71,10 +82,10 @@ final class Coordinator: ObservableObject {
                     self?.navigate(to: .characterDetail(character))
                 }
             }
-            HomeView(viewModel: viewModel)
+            return AnyView(HomeView(viewModel: viewModel))
 
         case .characterDetail(let character):
-            CharacterDetailView(character: character)
+            return AnyView(CharacterDetailView(character: character))
         }
     }
 }

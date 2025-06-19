@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct NavigationHostView: View {
-    @ObservedObject var coordinator: Coordinator
+struct NavigationHostView<CoordinatorType: CoordinatorProtocol>: View {
+    @ObservedObject var coordinator: CoordinatorType
 
     var body: some View {
         NavigationStack(path: coordinator.pathBinding) {
