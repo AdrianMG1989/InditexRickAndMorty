@@ -34,7 +34,7 @@ class HomeViewModel: ObservableObject {
     private let minimumSearchLength = 3
     var isFetchingPage = false
     var debounceTask: Task<Void, Never>?
-    private let debounceDelay: UInt64 = 300_000_000 // 300ms
+    private let debouncer = Debouncer(delay: 0.6)
     
     var onCharacterSelected: ((Character) -> Void)?
     
@@ -54,13 +54,11 @@ class HomeViewModel: ObservableObject {
     }
     
     func updateSearchText() {
-        debounceTask?.cancel()
-        debounceTask = Task {
-            try? await Task.sleep(nanoseconds: debounceDelay)
-            if Task.isCancelled { return }
-            guard searchText.isEmpty || searchText.count >= minimumSearchLength else { return }
-            guard !isFetchingPage else { return }
-            await fetchCharacters(isNewSearch: true)
+        debouncer.call { [weak self] in
+            guard let self = self else { return }
+            guard self.searchText.isEmpty || self.searchText.count >= self.minimumSearchLength else { return }
+            guard !self.isFetchingPage else { return }
+            await self.fetchCharacters(isNewSearch: true)
         }
     }
     
