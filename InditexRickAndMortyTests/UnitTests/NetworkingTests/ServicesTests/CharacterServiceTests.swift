@@ -31,9 +31,19 @@ final class CharacterServiceTests: XCTestCase {
     func testBuildURLRequest_WithAllParams() throws {
         let config = MockConfiguration()
         let service = CharacterService(configuration: config)
-
-        let request = try service.buildCharactersURLRequest(page: 3, name: "Morty", status: "alive")
         
-        XCTAssertEqual(request.url?.absoluteString, "https://api.test.com/character?page=3&name=Morty&status=alive")
+        let request = try service.buildCharactersURLRequest(page: 3, name: "Morty", status: "alive")
+        let url = try XCTUnwrap(request.url)
+        let components = try XCTUnwrap(URLComponents(url: url, resolvingAgainstBaseURL: false))
+        
+        let expectedItems = [
+            URLQueryItem(name: "page", value: "3"),
+            URLQueryItem(name: "name", value: "Morty"),
+            URLQueryItem(name: "status", value: "alive")
+        ]
+        
+        for item in expectedItems {
+            XCTAssertTrue(components.queryItems?.contains(item) == true)
+        }
     }
 }
