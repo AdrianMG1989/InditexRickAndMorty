@@ -1,14 +1,17 @@
 # InditexRickAndMortyApp
 
 ## Descripción
-InditexRickAndMortyApp es una aplicación iOS que permite buscar y visualizar personajes de la serie Rick and Morty. La aplicación consume una API externa para obtener los datos y muestra información detallada sobre cada personaje.
+InditexRickAndMortyApp es una aplicación iOS desarrollada con SwiftUI que permite buscar y visualizar personajes de la serie Rick and Morty. Consume una API externa oficial para obtener datos actualizados y muestra información detallada de cada personaje, incluyendo estado, especie, género y ubicación. La app está diseñada para ofrecer una experiencia fluida, accesible y adaptativa, aprovechando las últimas tecnologías de Apple.
 
 ## Tecnologías y herramientas utilizadas
 - **Lenguaje:** Swift 5.5+
 - **Frameworks:** SwiftUI
 - **Gestión de dependencias:** Swift Package Manager (SPM)
-- **Arquitectura:** MVVM
-- **Cache de imágenes:** Kingfisher
+- **Arquitectura:** MVVM (Model-View-ViewModel)
+- **Carga y cache de imágenes:** Kingfisher
+- **Red:** gestión de llamadas a la API usando async/await
+- **Soporte multilenguaje:** Español e Inglés con localización y accesibilidad
+- **Herramientas de desarrollo:** Xcode 16.2
 
 ## Requisitos
 - **iOS 18.2+**
@@ -28,26 +31,38 @@ InditexRickAndMortyApp es una aplicación iOS que permite buscar y visualizar pe
   
 ## Arquitectura
 La aplicación sigue el patrón MVVM (Model-View-ViewModel):
-- **Model:** Define la estructura de datos obtenida desde la API.
-- **ViewModel:** Gestiona la lógica de negocio y la comunicación con los servicios de datos.
-- **View:** Presenta la interfaz de usuario utilizando SwiftUI.
+- **Model:** Define los modelos de datos que representan personajes y otros elementos, generados a partir de la respuesta JSON de la API.
+- **ViewModel:** Gestiona la lógica de negocio, las llamadas a la API, el estado de la interfaz, la paginación y el filtrado. Centraliza la comunicación entre la vista y los servicios.
+- **View:** Implementada con SwiftUI, presenta la interfaz de usuario, fragmentada en componentes reutilizables para facilitar mantenibilidad y pruebas.
 
-## Funcionalidades
-- **Búsqueda de personajes** por nombre.
+Se utiliza un módulo local independiente, RickAndMortySearchBar, que encapsula la vista de búsqueda para lograr un diseño desacoplado y reutilizable.
+
+## Funcionalidades principales
+- **Búsqueda de personajes** por nombre con debounce para evitar llamadas innecesarias.
 - **Filtrado por estado** (Vivo, Muerto, Desconocido).
-- **Paginación automática** al hacer scroll.
-- **Visualización detallada** de cada personaje.
+- **Paginación automática** (scroll infinito) para carga eficiente y optimizada de grandes listas.
+- **Visualización detallada** de cada personaje con imagen, estado, especie, género y ubicación.
+- **Soporte para modo claro y oscuro,** con adaptabilidad a múltiples tamaños y dispositivos.
+- **Soporte para modo claro y oscuro,** con adaptabilidad a múltiples tamaños y dispositivos.
+- **Accesibilidad integrada** con etiquetas, hints y soporte para tecnologías asistidas.
+- **Soporte multilenguaje**  (español e inglés).
 
 ## Dependencias
-Las dependencias se gestionan con Swift Package Manager (SPM). Se usa:
-- **[Kingfisher](https://github.com/onevcat/Kingfisher)**: Para la carga y cache de imágenes.
+
+- **Kingfisher (https://github.com/onevcat/Kingfisher):** Manejo eficiente de carga y cache de imágenes desde URL, optimizando la experiencia del usuario y el rendimiento.
+- **RickAndMortySearchBar (módulo local):** Vista personalizada y desacoplada para búsqueda, facilitando su mantenimiento y reutilización.
+
+Todas las dependencias se gestionan mediante Swift Package Manager (SPM).
 
 ## Estructura del Proyecto
 ```
 InditexRickAndMorty/
+├── App/            # Punto de entrada y configuración principal
+├── Coordinator/    # Gestión y lógica de navegación
 ├── Entities/       # Modelos de datos y estructuras
-├── Router/         # Lógica de navegación
-├── Services/       # Servicios y APIs
+├── Factories/      # Creación de componentes y servicios
+├── Navigation/     # Definición de rutas y flujos de navegación
+├── Networking/     # Servicios y APIs
 ├── UseCases/       # Lógica de negocio
 ├── Utilities/      # Extensiones y utilidades
 ├── ViewModels/     # Lógica de negocio y estados
@@ -71,11 +86,14 @@ InditexRickAndMorty/
 - La UI se ha fragmentado en pequeñas vistas reutilizables (como CharacterCardView y SearchBarView) para facilitar la reutilización, testeo y mantenibilidad.
 - Las vistas usan componentes de SwiftUI que se adaptan automáticamente al modo claro/oscuro y a distintos tamaños de pantalla.
 
-## Posibles Mejoras
-🔹 Implementar tests de integración y Snapshot Testing. 
-🔹 Mostrar más información en la vista del detalle del personaje.  
-🔹 Mejoras visuales.
+## Áreas de mejora y próximos pasos
+🔹 Añadir más tests automatizados, especialmente pruebas de integración y snapshot testing para UI. 
+🔹 Ampliar la vista de detalle con más información y enlaces relacionados.  
+🔹 Soporte para más idiomas y personalización del usuario.
 
 ## Contacto
+
+Adrián Molinier – Senior iOS Developer
+
 https://www.linkedin.com/in/adrianmolinier/
 
