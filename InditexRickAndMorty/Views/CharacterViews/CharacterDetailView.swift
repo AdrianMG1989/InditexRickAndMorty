@@ -40,6 +40,13 @@ struct CharacterDetailView: View {
 
                  Text(String(format: NSLocalizedString("characterdetailview_originlocation_text", comment: "Character origin location text"), character.origin.name))
                      .secondaryTextStyle()
+                 
+                 Button("Enviar logs") {
+                     FileLogger.shared.log("El usuario pulsó enviar logs en \(character.name)")
+                     let logFile = FileLogger.shared.getLogFileURL()
+                     LogMailer.sendLogs(to: ["adrianmolinier@gmail.com"], logFileURL: logFile)
+                 }
+                 
              }
              .padding()
          }
